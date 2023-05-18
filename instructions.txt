@@ -1,0 +1,37 @@
+Initialisation : 
+
+1.	go to project folder
+2.	create the project npx create-expo-app notesApp
+3.	Navigate to  notesApp and do this : 
+        npm install react-navigation
+4.	install its dependencies for an expo managed project 
+        sudo npx expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+5.	npm install react-navigation-stack @react-native-community/masked-view
+6.	redid step one again with another command as per react native documentation
+        npm install @react-navigation/native
+7.	npm install @react-navigation/stack
+8.  Add this line in return statement in babel.config.js:
+    plugins: ["react-native-reanimated/plugin"]
+
+
+To run app in expo :
+    npm start
+
+# extensions used 
+GitHub Pull Requests and Issues
+React Native Tools
+Prettier - Code formatter
+Simple React Snippets
+
+
+#api call
+npm install axios 
+
+#for api server 
+ go to json server folder in 2 terminals
+ in one terminal : run 'npm run tunnel'
+ another terminal : run 'npm run db'
+
+
+
