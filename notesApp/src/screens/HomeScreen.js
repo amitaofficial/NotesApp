@@ -6,7 +6,7 @@ import {
   Button,
   FlatList,
   Modal,
-  TextInput,
+  TouchableOpacity,
   SafeAreaView,
   KeyboardAvoidingView,
 } from "react-native";
@@ -49,21 +49,29 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainView}>
-      <Button
-        title="Create New Note"
+      <TouchableOpacity
+        style={styles.createNewNoteButton}
         onPress={() => {
           setCreateNoteScreen(true);
         }}
-      />
+      >
+        <Text style={{ fontSize: 20, fontWeight: 300, color: "white" }}>
+          Create New Note
+        </Text>
+      </TouchableOpacity>
       {isCreateNoteScreenEnabled ? (
         <Modal>
           <NoteOverlay
             value={newNote}
             callback={(enteredNote) => {
               setCreateNoteScreen(false);
-              console.log("####### : ", enteredNote);
-              addNote(enteredNote);
-              getNotes(() => setLoading(false));
+              if (enteredNote) {
+                console.log("####### : ", enteredNote);
+                addNote(enteredNote);
+                getNotes(() => setLoading(false));
+              } else {
+                console.log("no note entered");
+              }
             }}
           ></NoteOverlay>
         </Modal>
@@ -102,6 +110,14 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop: 5,
+  },
+  createNewNoteButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgb(48, 87, 102)",
+    borderRadius: 10,
+    padding: 5,
+    marginHorizontal: 2,
   },
 });
 

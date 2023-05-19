@@ -5,7 +5,9 @@ import {
   TextInput,
   Button,
   Modal,
+  View,
   KeyboardAvoidingView,
+  TouchableHighlight,
 } from "react-native";
 import { AppContext as createNoteScreenContext } from "../../context/createNoteContext";
 import { AppContext } from "../../context/notesContext";
@@ -32,17 +34,24 @@ const NoteOverlay = ({ newNote, callback }) => {
         autoCorrect={false}
         autoCapitalize="none"
       ></TextInput>
-      <Button
-        style={styles.modalButton}
-        title="Submit"
-        onPress={() => {
-          callback(newNote);
-          // console.log("new note is", newNote);
-          // setCreateNoteScreen(false);
-          // addNote(newNote);
-          // getNotes(() => setLoading(false));
-        }}
-      ></Button>
+      <View style={styles.buttonsContainer}>
+        <TouchableHighlight
+          style={styles.modalButton}
+          onPress={() => {
+            callback();
+          }}
+        >
+          <Text style={styles.modalButtonText}>Cancel</Text>
+        </TouchableHighlight>
+        <TouchableHighlight // button created using TouchableHighlight and Text elements instead of Button
+          style={styles.modalButton}
+          onPress={() => {
+            callback(newNote);
+          }}
+        >
+          <Text style={styles.modalButtonText}>Submit</Text>
+        </TouchableHighlight>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -67,8 +76,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modalButton: {
-    margin: 20,
-    borderRadius: 0.5,
+    height: 40,
+    width: 160,
+    borderRadius: 10,
+    backgroundColor: "rgb(50, 157, 168)",
+    margin: 5,
+    color: "black",
+    alignItems: "center",
+    justifyContent: "center",
   },
   noNotesError: {
     position: "absolute",
@@ -84,5 +99,14 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
   },
   //////////////////
+  buttonsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  modalButtonText: {
+    fontWeight: "300",
+    fontSize: 20,
+  },
 });
 export default NoteOverlay;

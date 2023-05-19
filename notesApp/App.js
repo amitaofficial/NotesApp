@@ -16,7 +16,17 @@ export default function App() {
       <CreateNoteScreenProvider>
         <NavigationContainer>
           <stack.Navigator>
-            <stack.Screen name="Home" component={HomeScreen}></stack.Screen>
+            <stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: "Your Notes",
+                headerStyle: { backgroundColor: "gray" },
+                headerTitleStyle: {
+                  fontSize: 25,
+                },
+              }}
+            ></stack.Screen>
           </stack.Navigator>
         </NavigationContainer>
       </CreateNoteScreenProvider>
